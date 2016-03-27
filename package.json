@@ -1,0 +1,29 @@
+{
+  "name": "marked-for-chat",
+  "description": "A markdown parser built for speed, optimized for chat parsing",
+  "author": {
+    "name": "Colin Whitmarsh"
+  },
+  "version": "1.0.6",
+  "main": "./marked-for-chat.min.js",
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "markup",
+    "html",
+    "chat"
+  ],
+  "tags": [
+    "markdown",
+    "markup",
+    "html",
+    "chat"
+  ],
+  "devDependencies": {
+    "markdown": "*",
+    "showdown": "*",
+    "gulp": "^3.8.11",
+    "gulp-uglify": "^1.1.0",
+    "gulp-concat": "^2.5.2"
+  }
+}
