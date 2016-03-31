@@ -529,7 +529,7 @@ InlineLexer.prototype.output = function(src) {
       src = src.substring(cap[0].length);
       text = escape(cap[1]);
       href = text;
-      out += this.renderer.link(href, null, text);
+      out += this.renderer.link(href, null, text, out);
       continue;
     }
 
@@ -779,7 +779,7 @@ Renderer.prototype.del = function(text) {
   return '<del>' + text + '</del>';
 };
 
-Renderer.prototype.link = function(href, title, text) {
+Renderer.prototype.link = function(href, title, text, out) {
   if (this.options.sanitize) {
     try {
       var prot = decodeURIComponent(unescape(href))
@@ -794,8 +794,9 @@ Renderer.prototype.link = function(href, title, text) {
   }
   
   // Check if link is a youtube video
-  var youtube = /(^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$)/
-  if (youtube.test(href)) {
+  var youtubeLink = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+  if (youtubeLink.test(href) && !out) {
+    href = href.match(youtubeLink)
     return this.youtubeVideo(href);
   }
 
@@ -818,10 +819,7 @@ Renderer.prototype.image = function(href, title, text) {
 
 // Render in iframe tag
 Renderer.prototype.youtubeVideo = function(href, title, text) {
-  var video_id = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-  var id = href.match(video_id)
-  
-  href = 'http://www.youtube.com/embed/' + id[1];
+  href = 'http://www.youtube.com/embed/' + href[1];
   var out = '<iframe src="' + href + '"';
 
   out += this.options.xhtml ? '/>' : '>';
