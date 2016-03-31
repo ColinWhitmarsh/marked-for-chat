@@ -4,7 +4,7 @@
   "author": {
     "name": "Colin Whitmarsh"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "./marked-for-chat.min.js",
   "license": "MIT",
   "keywords": [
