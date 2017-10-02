@@ -1,3 +1,8 @@
+# Not Recommended For Use In Production
+
+This package is no longer maintained.
+
+
 # marked-for-chat
 
 > A slimmed down version of [Christopher Jeffrey's](https://github.com/chjj) [marked](https://github.com/chjj/marked) library, optimized for parsing and displaying chat messages.
